@@ -86,7 +86,9 @@ export const commentRouter = router({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      // TODO: Remove this once we have a real user
       const userId = 1;
+
       const now = new Date().toISOString();
 
       const experience = await db.query.experiencesTable.findFirst({
