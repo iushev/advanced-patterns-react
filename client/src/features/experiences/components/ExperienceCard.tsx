@@ -96,7 +96,6 @@ function ExperienceCardMetricButtons({
 }: ExperienceCardMetricButtonsProps) {
   return (
     <div className="flex items-center gap-2">
-      <MessageSquare className="h-5 w-5" />
       <Button variant="link" asChild>
         <Link
           to="/experiences/$experienceId"
