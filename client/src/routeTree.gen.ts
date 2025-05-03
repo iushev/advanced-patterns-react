@@ -12,7 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as ExperienceIdIndexImport } from './routes/$experienceId/index'
+import { Route as ExperiencesExperienceIdIndexImport } from './routes/experiences/$experienceId/index'
 
 // Create/Update Routes
 
@@ -22,11 +22,12 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ExperienceIdIndexRoute = ExperienceIdIndexImport.update({
-  id: '/$experienceId/',
-  path: '/$experienceId/',
-  getParentRoute: () => rootRoute,
-} as any)
+const ExperiencesExperienceIdIndexRoute =
+  ExperiencesExperienceIdIndexImport.update({
+    id: '/experiences/$experienceId/',
+    path: '/experiences/$experienceId/',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -39,11 +40,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/$experienceId/': {
-      id: '/$experienceId/'
-      path: '/$experienceId'
-      fullPath: '/$experienceId'
-      preLoaderRoute: typeof ExperienceIdIndexImport
+    '/experiences/$experienceId/': {
+      id: '/experiences/$experienceId/'
+      path: '/experiences/$experienceId'
+      fullPath: '/experiences/$experienceId'
+      preLoaderRoute: typeof ExperiencesExperienceIdIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +54,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$experienceId': typeof ExperienceIdIndexRoute
+  '/experiences/$experienceId': typeof ExperiencesExperienceIdIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$experienceId': typeof ExperienceIdIndexRoute
+  '/experiences/$experienceId': typeof ExperiencesExperienceIdIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/$experienceId/': typeof ExperienceIdIndexRoute
+  '/experiences/$experienceId/': typeof ExperiencesExperienceIdIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$experienceId'
+  fullPaths: '/' | '/experiences/$experienceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$experienceId'
-  id: '__root__' | '/' | '/$experienceId/'
+  to: '/' | '/experiences/$experienceId'
+  id: '__root__' | '/' | '/experiences/$experienceId/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ExperienceIdIndexRoute: typeof ExperienceIdIndexRoute
+  ExperiencesExperienceIdIndexRoute: typeof ExperiencesExperienceIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ExperienceIdIndexRoute: ExperienceIdIndexRoute,
+  ExperiencesExperienceIdIndexRoute: ExperiencesExperienceIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +98,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/$experienceId/"
+        "/experiences/$experienceId/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/$experienceId/": {
-      "filePath": "$experienceId/index.tsx"
+    "/experiences/$experienceId/": {
+      "filePath": "experiences/$experienceId/index.tsx"
     }
   }
 }
